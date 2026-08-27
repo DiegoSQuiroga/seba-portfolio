@@ -1,0 +1,51 @@
+.manifesto {
+  position: relative;
+  min-height: 105svh;
+  padding: clamp(90px, 11vw, 170px) var(--page-gutter);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  isolation: isolate;
+  background: #080808 url('../assets/images/astronauta.png') center 48% / cover no-repeat;
+  color: var(--white);
+}
+
+.manifesto::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, rgba(5, 5, 5, .94) 0%, rgba(5, 5, 5, .75) 46%, rgba(5, 5, 5, .25) 76%, rgba(5, 5, 5, .72) 100%);
+}
+
+.manifesto .section-kicker { color: rgba(246, 246, 243, .6); }
+.manifesto-title { max-width: 1300px; margin: 0; font-size: clamp(56px, 8.3vw, 150px); line-height: .84; letter-spacing: -.075em; font-weight: 650; text-shadow: 0 2px 30px rgba(0, 0, 0, .35); }
+.manifesto-mask { display: block; overflow: hidden; }
+.manifesto-line { display: block; }
+.manifesto-mask:nth-child(2) { margin-left: 8vw; }
+.manifesto-mask:nth-child(3) { margin-left: 22vw; color: var(--lime); font-family: Georgia, serif; font-style: italic; font-weight: 400; }
+.manifesto-aside { width: min(520px, 42vw); margin: clamp(70px, 10vw, 140px) 6vw 0 auto; }
+.manifesto-rule { display: block; height: 1px; margin-bottom: 22px; background: rgba(246, 246, 243, .75); transform-origin: left; }
+.manifesto-aside p { margin: 0; font-size: clamp(16px, 1.35vw, 20px); line-height: 1.55; text-shadow: 0 2px 18px #000; }
+
+@media (max-width: 1199px) {
+  .manifesto { min-height: 920px; background-position: 42% 50%; }
+  .manifesto-aside { width: min(500px, 52vw); margin-right: 2vw; }
+}
+
+@media (max-width: 849px) {
+  .manifesto { min-height: max(780px, 100svh); padding-block: clamp(78px, 13vw, 110px); background-position: 38% center; }
+  .manifesto::before { background: linear-gradient(180deg, rgba(4, 4, 4, .82) 0%, rgba(4, 4, 4, .45) 44%, rgba(4, 4, 4, .93) 100%); }
+  .manifesto-title { font-size: clamp(48px, 12.8vw, 96px); line-height: .88; }
+  .manifesto-mask:nth-child(2) { margin-left: 2vw; }
+  .manifesto-mask:nth-child(3) { margin-left: 7vw; }
+  .manifesto-aside { width: min(88%, 520px); margin: clamp(70px, 14vw, 110px) 0 0 auto; }
+}
+
+@media (max-width: 519px) {
+  .manifesto { min-height: 780px; background-position: 39% center; }
+  .manifesto-title { font-size: clamp(47px, 13.7vw, 68px); letter-spacing: -.065em; }
+  .manifesto-aside { width: 92%; margin-top: 64px; }
+}
+
