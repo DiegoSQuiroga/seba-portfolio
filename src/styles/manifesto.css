@@ -1,51 +1,9 @@
-.manifesto {
-  position: relative;
-  min-height: 105svh;
-  padding: clamp(90px, 11vw, 170px) var(--page-gutter);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
-  isolation: isolate;
-  background: #080808 url('../assets/images/astronauta.png') center 48% / cover no-repeat;
-  color: var(--white);
-}
-
-.manifesto::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(90deg, rgba(5, 5, 5, .94) 0%, rgba(5, 5, 5, .75) 46%, rgba(5, 5, 5, .25) 76%, rgba(5, 5, 5, .72) 100%);
-}
-
-.manifesto .section-kicker { color: rgba(246, 246, 243, .6); }
-.manifesto-title { max-width: 1300px; margin: 0; font-size: clamp(56px, 8.3vw, 150px); line-height: .84; letter-spacing: -.075em; font-weight: 650; text-shadow: 0 2px 30px rgba(0, 0, 0, .35); }
-.manifesto-mask { display: block; overflow: hidden; }
-.manifesto-line { display: block; }
-.manifesto-mask:nth-child(2) { margin-left: 8vw; }
-.manifesto-mask:nth-child(3) { margin-left: 22vw; color: var(--lime); font-family: Georgia, serif; font-style: italic; font-weight: 400; }
-.manifesto-aside { width: min(520px, 42vw); margin: clamp(70px, 10vw, 140px) 6vw 0 auto; }
-.manifesto-rule { display: block; height: 1px; margin-bottom: 22px; background: rgba(246, 246, 243, .75); transform-origin: left; }
-.manifesto-aside p { margin: 0; font-size: clamp(16px, 1.35vw, 20px); line-height: 1.55; text-shadow: 0 2px 18px #000; }
-
-@media (max-width: 1199px) {
-  .manifesto { min-height: 920px; background-position: 42% 50%; }
-  .manifesto-aside { width: min(500px, 52vw); margin-right: 2vw; }
-}
-
-@media (max-width: 849px) {
-  .manifesto { min-height: max(780px, 100svh); padding-block: clamp(78px, 13vw, 110px); background-position: 38% center; }
-  .manifesto::before { background: linear-gradient(180deg, rgba(4, 4, 4, .82) 0%, rgba(4, 4, 4, .45) 44%, rgba(4, 4, 4, .93) 100%); }
-  .manifesto-title { font-size: clamp(48px, 12.8vw, 96px); line-height: .88; }
-  .manifesto-mask:nth-child(2) { margin-left: 2vw; }
-  .manifesto-mask:nth-child(3) { margin-left: 7vw; }
-  .manifesto-aside { width: min(88%, 520px); margin: clamp(70px, 14vw, 110px) 0 0 auto; }
-}
-
-@media (max-width: 519px) {
-  .manifesto { min-height: 780px; background-position: 39% center; }
-  .manifesto-title { font-size: clamp(47px, 13.7vw, 68px); letter-spacing: -.065em; }
-  .manifesto-aside { width: 92%; margin-top: 64px; }
-}
-
+.manifesto { position: relative; min-height: 103svh; margin-top: -1px; padding: clamp(92px,10vw,160px) var(--page-gutter) clamp(72px,7vw,110px); display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; isolation: isolate; background: #080808 url('../assets/images/astronauta.png') center 48% / cover no-repeat; color: var(--white); }
+.manifesto::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg,#090909 0%,rgba(5,5,5,.32) 22%,rgba(5,5,5,.45) 68%,#15140f 100%), linear-gradient(90deg,rgba(5,5,5,.9),transparent 70%); }
+.manifesto::after { content: ''; position: absolute; z-index: 0; left: 0; right: 0; bottom: 0; height: 28%; background: linear-gradient(transparent,rgba(238,234,224,.08)); pointer-events: none; }
+.manifesto-glow { position: absolute; z-index: -1; right: -8vw; bottom: -18vw; width: 56vw; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle,rgba(238,234,224,.2),transparent 68%); filter: blur(20px); }
+.manifesto .section-kicker { color: rgba(255,255,255,.55); }.manifesto-title { max-width: 1250px; margin: 0; font-size: clamp(62px,9.1vw,165px); line-height: .82; letter-spacing: -.08em; font-weight: 700; text-shadow: 0 4px 30px #000; }
+.manifesto-mask { display: block; overflow: hidden; }.manifesto-line { display: block; }.manifesto-mask:nth-child(2) { margin-left: 9vw; }.manifesto-mask:nth-child(3) { margin-left: 28vw; color: var(--lime); font-family: Georgia,serif; font-style: italic; font-weight: 400; }
+.manifesto-copy { position: relative; z-index: 1; width: min(500px,42vw); margin: clamp(80px,10vw,150px) 4vw 0 auto; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.65); }.manifesto-copy p { margin: 0 0 35px; font-size: clamp(16px,1.25vw,19px); line-height: 1.6; text-shadow: 0 2px 16px #000; }.manifesto-copy strong { color: var(--lime); font-size: 10px; letter-spacing: .17em; }
+@media (max-width: 849px) { .manifesto { min-height: 900px; background-position: 40% center; }.manifesto-title { font-size: clamp(51px,13vw,95px); }.manifesto-mask:nth-child(2) { margin-left: 2vw; }.manifesto-mask:nth-child(3) { margin-left: 10vw; }.manifesto-copy { width: min(90%,500px); margin-left: auto; } }
+@media (max-width: 519px) { .manifesto { min-height: 820px; }.manifesto-copy { width: 94%; }.manifesto-title { font-size: clamp(48px,13.8vw,68px); } }

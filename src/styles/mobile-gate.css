@@ -1,0 +1,9 @@
+.mobile-gate { display: none; }
+@media (max-width: 849px) {
+  .page { display: none; }
+  .mobile-gate { min-height: 100svh; padding: 24px var(--page-gutter); display: flex; flex-direction: column; background: radial-gradient(circle at 70% 35%,rgba(216,255,69,.08),transparent 26%),#090909; color: var(--white); }
+  .mobile-gate-name { margin: 0; color: #777; font-size: 8px; font-weight: 700; letter-spacing: .13em; }
+  .mobile-gate h1 { margin: auto 0 35px; font-size: clamp(52px,16vw,88px); line-height: .77; letter-spacing: -.08em; }.mobile-gate h1 em { color: var(--lime); }
+  .mobile-gate > p:nth-of-type(2) { max-width: 440px; margin: 0 0 46px; color: #aaa; font-size: 14px; line-height: 1.5; }
+  .mobile-gate nav { display: flex; flex-direction: column; border-top: 1px solid #333; }.mobile-gate nav a,.mobile-gate nav span { padding: 15px 0; border-bottom: 1px solid #333; color: var(--white); font-size: 10px; letter-spacing: .06em; }.mobile-gate nav span { color: #666; }
+}

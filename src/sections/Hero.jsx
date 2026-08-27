@@ -2,102 +2,58 @@ import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import '../styles/hero.css'
 
-const capabilities = ['THAT.', 'DESIGN.', 'CODE.', 'PEOPLE.', 'RESEARCH.', 'CONTENT.', 'DATA.', 'IDEAS.']
+const contextWords = ['DO THAT.', 'UNDERSTAND IT.', 'DESIGN IT.', 'BUILD IT.', 'EXPLAIN IT.', 'FIX IT.']
 
 function Hero() {
   const heroRef = useRef(null)
-  const wordRef = useRef(null)
-  const [active, setActive] = useState(0)
-  const previous = useRef(0)
-
+  const phraseRef = useRef(null)
+  const [phrase, setPhrase] = useState(contextWords[0])
   useEffect(() => {
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduceMotion) return
-
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const ctx = gsap.context(() => {
-      gsap.set('.hero-capability, .hero-cta, .hero-scroll', { opacity: 0 })
       gsap.timeline({ defaults: { ease: 'power4.out' } })
-        .from('.hero-meta > *', { yPercent: -120, duration: .65, stagger: .08 })
-        .from('.hero-word .hero-glyph', { yPercent: 115, rotate: 4, duration: .95, stagger: .035 }, '-=.25')
-        .from('.hero-rule', { scaleX: 0, duration: .9 }, '-=.62')
-        .from('.hero-counter', { opacity: 0, x: -14, duration: .5 }, '-=.5')
-        .to('.hero-capability', { opacity: 1, duration: .35, stagger: .045 }, '-=.25')
-        .to('.hero-cta, .hero-scroll', { opacity: 1, duration: .5, stagger: .08 }, '-=.2')
-
-      const switches = [
-        gsap.delayedCall(2.1, () => setActive(1)),
-        gsap.delayedCall(3.25, () => setActive(2)),
-        gsap.delayedCall(4.4, () => setActive(3)),
-        gsap.delayedCall(5.55, () => setActive(7)),
-        gsap.delayedCall(6.8, () => setActive(0)),
-      ]
-
-      const stage = heroRef.current.querySelector('.hero-composition')
-      const xTo = gsap.quickTo(stage, 'x', { duration: .8, ease: 'power3.out' })
-      const yTo = gsap.quickTo(stage, 'y', { duration: .8, ease: 'power3.out' })
-      const move = (event) => {
-        xTo((event.clientX / window.innerWidth - .5) * 9)
-        yTo((event.clientY / window.innerHeight - .5) * 6)
+        .from('.hero-meta > *', { yPercent: -130, duration: .7, stagger: .08 })
+        .from('.hero-line-inner', { yPercent: 115, rotate: 2, duration: 1, stagger: .09 }, '-=.35')
+        .from('.hero-context, .hero-footer', { opacity: 0, y: 14, duration: .65, stagger: .08 }, '-=.45')
+      const composition = heroRef.current.querySelector('.hero-composition')
+      const xTo = gsap.quickTo(composition, 'x', { duration: .9, ease: 'power3.out' })
+      const yTo = gsap.quickTo(composition, 'y', { duration: .9, ease: 'power3.out' })
+      const move = ({ clientX, clientY }) => {
+        xTo((clientX / window.innerWidth - .5) * 10)
+        yTo((clientY / window.innerHeight - .5) * 7)
       }
       heroRef.current.addEventListener('pointermove', move)
-
-      return () => {
-        switches.forEach((switchCall) => switchCall.kill())
-        heroRef.current?.removeEventListener('pointermove', move)
-      }
+      return () => heroRef.current?.removeEventListener('pointermove', move)
     }, heroRef)
-
     return () => ctx.revert()
   }, [])
 
-  useEffect(() => {
-    if (!wordRef.current || previous.current === active) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      previous.current = active
+  const selectPhrase = (nextPhrase) => {
+    if (nextPhrase === phrase) return
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduceMotion) {
+      setPhrase(nextPhrase)
       return
     }
-
-    const element = wordRef.current
-    gsap.killTweensOf(element)
-    gsap.fromTo(element, { yPercent: 105, rotate: 2, opacity: 0 }, { yPercent: 0, rotate: 0, opacity: 1, duration: .65, ease: 'power4.out' })
-    previous.current = active
-  }, [active])
+    gsap.to(phraseRef.current, { yPercent: -105, opacity: 0, duration: .18, ease: 'power2.in', onComplete: () => {
+      setPhrase(nextPhrase)
+      gsap.fromTo(phraseRef.current, { yPercent: 105, opacity: 0 }, { yPercent: 0, opacity: 1, duration: .38, ease: 'power4.out' })
+    } })
+  }
 
   return (
     <section className="hero" id="top" ref={heroRef} aria-labelledby="hero-title">
-      <header className="hero-meta">
-        <p>DIEGO SEBASTIAN QUIROGA</p>
-        <p>DESIGN / CODE / PEOPLE</p>
-        <p>PORTFOLIO / 2026</p>
-      </header>
-
+      <header className="hero-meta"><p>DIEGO SEBASTIAN QUIROGA</p><p>COPENHAGEN</p><p>OPEN TO GOOD PROBLEMS</p></header>
       <div className="hero-composition">
-        <h1 className="hero-statement" id="hero-title" aria-label="I can probably do that.">
-          <span className="hero-word" aria-hidden="true">{'I CAN'.split('').map((glyph, index) => <span className="hero-glyph" key={index}>{glyph === ' ' ? '\u00a0' : glyph}</span>)}</span>
-          <span className="hero-word hero-word--probably" aria-hidden="true">{'PROBABLY'.split('').map((glyph, index) => <span className="hero-glyph" key={index}>{glyph}</span>)}</span>
-          <span className="hero-do" aria-hidden="true">DO</span>
-          <span className="hero-variable-mask" aria-hidden="true"><span className="hero-variable" ref={wordRef} key={capabilities[active]}>{capabilities[active]}</span></span>
+        <h1 className="hero-statement" id="hero-title" aria-label={`I can probably ${phrase.toLowerCase()}`}>
+          {['I CAN', 'PROBABLY'].map((line) => <span className="hero-line" key={line} aria-hidden="true"><span className="hero-line-inner">{line}</span></span>)}
+          <span className={`hero-line hero-line--phrase${phrase === 'UNDERSTAND IT.' ? ' hero-line--understand' : ''}`} aria-hidden="true"><span className="hero-line-inner" ref={phraseRef}>{phrase}</span></span>
         </h1>
-
-        <div className="hero-rule" aria-hidden="true" />
-        <p className="hero-counter" aria-hidden="true">{String(active + 1).padStart(2, '0')} / {String(capabilities.length).padStart(2, '0')}</p>
+        <div className="hero-context" aria-label="Choose the hero statement">{contextWords.map((word) => <button type="button" className={phrase === word ? 'is-active' : ''} aria-pressed={phrase === word} onClick={() => selectPhrase(word)} key={word}>{word}</button>)}</div>
       </div>
-
-      <div className="hero-capabilities" aria-label="Explore disciplines">
-        {capabilities.slice(1).map((capability, index) => (
-          <button className={`hero-capability${active === index + 1 ? ' is-active' : ''}`} type="button" key={capability} onMouseEnter={() => setActive(index + 1)} onFocus={() => setActive(index + 1)} onClick={() => setActive(index + 1)} aria-pressed={active === index + 1}>
-            <span>{String(index + 1).padStart(2, '0')}</span>{capability.replace('.', '')}
-          </button>
-        ))}
-      </div>
-
-      <div className="hero-footer">
-        <a className="hero-cta" href="#work">SEE WHAT I MEAN <span aria-hidden="true">{'\u2198'}</span></a>
-        <p className="hero-scroll">SCROLL TO TEST THAT CLAIM <span aria-hidden="true">{'\u2193'}</span></p>
-      </div>
+      <div className="hero-footer"><a href="#manifesto">FOLLOW THE THREAD <span aria-hidden="true">↓</span></a><p>PEOPLE / IDEAS / SYSTEMS</p></div>
     </section>
   )
 }
 
 export default Hero
-

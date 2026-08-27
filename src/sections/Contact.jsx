@@ -1,23 +1,22 @@
+import { socialLinks } from '../config/socialLinks'
 import '../styles/portfolio.css'
 
-const email = 'mailto:quirogadiegosebastian@gmail.com'
+const email = 'quirogadiegosebastian@gmail.com'
 
 function Contact() {
   return (
     <footer className="contact" id="contact">
-      <div className="section-kicker light"><span>06</span><span>CONTACT</span></div>
-      <p className="contact-eyebrow">HAVE A PROBLEM WORTH PUSHING?</p>
-      <a className="contact-title" href={email}>LET&rsquo;S SEE IF<br />I CAN DO <em>THAT.</em></a>
-      <nav className="contact-links" aria-label="Contact links">
-        <a href={email}>EMAIL <span aria-hidden="true">{'\u2197'}</span></a>
-        <a href="#linkedin">LINKEDIN <span aria-hidden="true">{'\u2197'}</span></a>
-        <a href="#github">GITHUB <span aria-hidden="true">{'\u2197'}</span></a>
-        <a href="/Diego-Sebastian-Quiroga-CV.pdf" target="_blank" rel="noopener noreferrer">DOWNLOAD CV <span aria-hidden="true">{'\u2197'}</span></a>
+      <p className="section-kicker light">CONTACT / COPENHAGEN</p>
+      <h2>LET&rsquo;S <em>TALK.</em></h2>
+      <div className="contact-direct"><a href={`mailto:${email}`}>{email}</a><a href="tel:+4550179934">+45 50 17 99 34</a></div>
+      <nav className="contact-links" aria-label="Social links">
+        <a href={socialLinks.linkedin} target="_blank" rel="noreferrer">LINKEDIN ↗</a>
+        <a href={socialLinks.github} target="_blank" rel="noreferrer">GITHUB ↗</a>
+        <a href={socialLinks.nextHouseInstagram} target="_blank" rel="noreferrer">NEXT HOUSE INSTAGRAM ↗</a>
       </nav>
-      <div className="contact-foot"><span>DIEGO SEBASTIAN QUIROGA</span><a href="#top">BACK TO TOP <span aria-hidden="true">{'\u2191'}</span></a></div>
+      <div className="contact-foot"><span>DIEGO SEBASTIAN QUIROGA</span><a href="#top">BACK TO TOP ↑</a></div>
     </footer>
   )
 }
 
 export default Contact
-
