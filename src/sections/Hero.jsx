@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
+import portrait from '../assets/images/me.png'
 import '../styles/hero.css'
 
 const contextWords = ['DO THAT.', 'UNDERSTAND IT.', 'DESIGN IT.', 'BUILD IT.', 'EXPLAIN IT.', 'FIX IT.']
@@ -44,6 +45,7 @@ function Hero() {
   return (
     <section className="hero" id="top" ref={heroRef} aria-labelledby="hero-title">
       <header className="hero-meta"><p>DIEGO SEBASTIAN QUIROGA</p><p>COPENHAGEN</p><p>OPEN TO GOOD PROBLEMS</p></header>
+      <figure className="hero-portrait"><img src={portrait} alt="Diego Sebastian Quiroga" /></figure>
       <div className="hero-composition">
         <h1 className="hero-statement" id="hero-title" aria-label={`I can probably ${phrase.toLowerCase()}`}>
           {['I CAN', 'PROBABLY'].map((line) => <span className="hero-line" key={line} aria-hidden="true"><span className="hero-line-inner">{line}</span></span>)}
@@ -51,7 +53,7 @@ function Hero() {
         </h1>
         <div className="hero-context" aria-label="Choose the hero statement">{contextWords.map((word) => <button type="button" className={phrase === word ? 'is-active' : ''} aria-pressed={phrase === word} onClick={() => selectPhrase(word)} key={word}>{word}</button>)}</div>
       </div>
-      <div className="hero-footer"><a href="#manifesto">FOLLOW THE THREAD <span aria-hidden="true">↓</span></a><p>PEOPLE / IDEAS / SYSTEMS</p></div>
+      <div className="hero-footer"><a href="#disciplines">FOLLOW THE THREAD <span aria-hidden="true">↓</span></a><p>PEOPLE / IDEAS / SYSTEMS</p></div>
     </section>
   )
 }

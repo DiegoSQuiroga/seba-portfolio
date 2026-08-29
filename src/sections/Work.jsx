@@ -11,7 +11,6 @@ const projects = [
   { title: 'NEXUS', category: 'AI / FRONT-END / HOSPITALITY', copy: 'A conversational hostel assistant shaped by recurring guest questions and operational knowledge.', meta: 'REACT / FIREBASE / OPENAI API / NODE.JS / VITE / TAILWIND', visual: 'nexus', video: nexusVideo },
   { title: 'MUZKO', category: 'FULL-STACK LEARNING PROJECT', copy: 'An e-commerce build created to learn the practical relationship between interface, routing, APIs and payments.', meta: 'REACT / TYPESCRIPT / REACT ROUTER / TAILWIND / NODE.JS / EXPRESS / MERCADO PAGO / FRAMER MOTION', visual: 'muzko', image: muzko },
   { title: 'NEXT HOUSE CONTENT', category: 'MARKETING / CONTENT', copy: 'Published social content co-created with one other team member for Next House Copenhagen.', meta: 'CAMPAIGNS / VIDEO / REELS / COPY / EDITING', visual: 'content', image: nexthouseContent, href: socialLinks.nextHouseInstagram, linkLabel: 'SEE THE WORK IN THE WILD ↗' },
-  { title: 'THIS PORTFOLIO', category: 'DESIGN / FRONT-END / CREATIVE DEVELOPMENT', copy: 'An editorial narrative connecting a multidisciplinary path through typography, interaction and code.', meta: 'REACT / VITE / GSAP', visual: 'portfolio' },
 ]
 
 function Work() {
